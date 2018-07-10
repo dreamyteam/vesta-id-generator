@@ -11,7 +11,7 @@
 
     <groupId>com.robert.vesta</groupId>
     <artifactId>vesta-service</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>vesta-service</name>
 
 
@@ -50,19 +50,19 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>4.1.6.RELEASE</version>
+            <version>4.3.9.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.1.6.RELEASE</version>
+            <version>4.3.9.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>4.1.6.RELEASE</version>
+            <version>4.3.9.RELEASE</version>
         </dependency>
 
         <dependency>
