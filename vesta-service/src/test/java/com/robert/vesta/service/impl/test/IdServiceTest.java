@@ -2,6 +2,7 @@ package com.robert.vesta.service.impl.test;
 
 import com.robert.vesta.service.bean.Id;
 import com.robert.vesta.service.intf.IdService;
+import com.robert.vesta.util.IdUtils;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.AssertJUnit;
@@ -12,8 +13,7 @@ public class IdServiceTest extends AbstractTestNGSpringContextTests {
 
     @Test(groups = {"idService"})
     public void testSimple() {
-        IdService idService = (IdService) applicationContext
-                .getBean("idService");
+        IdService idService = IdUtils.genId();
 
         long id = idService.genId();
         Id ido = idService.expId(id);

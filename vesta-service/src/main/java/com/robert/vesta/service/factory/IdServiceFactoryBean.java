@@ -6,6 +6,7 @@ import com.robert.vesta.service.impl.provider.DbMachineIdProvider;
 import com.robert.vesta.service.impl.provider.IpConfigurableMachineIdProvider;
 import com.robert.vesta.service.impl.provider.PropertyMachineIdProvider;
 import com.robert.vesta.service.intf.IdService;
+import com.robert.vesta.util.IpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
@@ -25,7 +26,7 @@ public class IdServiceFactoryBean implements FactoryBean<IdService> {
 
     private Type providerType;
 
-    private long machineId = 0;
+    private long machineId = -1;
 
     private String ips;
 
@@ -41,17 +42,18 @@ public class IdServiceFactoryBean implements FactoryBean<IdService> {
     private IdService idService;
 
     public void init() {
-//        if (providerType == null) {
-//            log.error("The type of Id service is mandatory.");
-//            throw new IllegalArgumentException(
-//                    "The type of Id service is mandatory.");
-//        }
         if (providerType == null) {
-            providerType = Type.PROPERTY;
+            log.error("The type of Id service is mandatory.");
+            throw new IllegalArgumentException(
+                    "The type of Id service is mandatory.");
         }
 
-        if (machineId == 0) {
-            machineId = 999;
+        if (machineId == -1) {
+            String hostIp = IpUtils.getHostIp();
+            String[] split = hostIp.split("\\.");
+            for (String v : split) {
+                machineId += Long.valueOf(v);
+            }
         }
 
         switch (providerType) {
